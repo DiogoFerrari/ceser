@@ -1,0 +1,65 @@
+
+* CESET @@html:<img src='man/figures/logo.png' align="right" height="139" />@@
+
+#+ATTR_HTML: title="Travis ceser"
+  [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
+
+* Overview
+
+The package provides a function to compute Cluster Estimated Standard Errors (CESE).
+
+For details, see Jackson, John (2019) Corrected Standard Errors with Clustered Data. Political Analysis.
+
+* Instalation
+
+# Install the development version (requires the package "devtools", so install it first if it is not installed already)
+
+#+BEGIN_SRC R :exports code
+devtools::install_github("DiogoFerrari/ceser")
+# If you don't want to update the dependencies, use: (you may need to install some dependencies manually)
+devtools::install_github("DiogoFerrari/ceser", dependencies=F)
+#+END_SRC
+
+NOTE: it may be necessary to create a token to install the package from the git repository in case it is private (see note at the bottom of help page in R by running =help(install_github)=).
+
+* Usage
+
+Here is a simple example (for more information, see =help(ceser)= and =help(vocvCESE)=).
+
+#+NAME: 
+#+BEGIN_SRC R :exports code
+
+load(dcese)
+
+mod  = lm(enep ~  enpc + fapres + enpcfapres + proximity + eneg + logmag + logmag_eneg , data=dcese)
+
+## --------------------------------------
+## Getting the variance covariance matrix
+## -------------------------------------- 
+## Original variance-covariance matrix (no clustered std. errors)
+vcov(mod)
+
+## Variance-covariance matrix using CRSE (sandwish package)
+## sandwich::vcovCL(mod, cluster = ~ country)
+## sandwich::vcovCL(mod, cluster = ~ country, type="HC3")
+
+## Variance-covariance matrix using CESE
+ceser::vcovCESE(mod, cluster = ~ country)
+ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
+
+## ---------
+## Summaries
+## ---------
+## no robust SE 
+summary(mod)                                                                          
+
+## summary table using CRSE (sandwich package)
+## lmtest::coeftest(mod, vcov = sandwich::vcovCL, cluster = ~ country)                   
+
+## summary using CESE
+lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
+
+#+END_SRC
+
+
+
