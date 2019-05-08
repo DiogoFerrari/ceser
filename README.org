@@ -28,9 +28,9 @@ Here is a simple example (for more information, see =help(ceser)= and =help(vocv
 
 #+NAME: 
 #+BEGIN_SRC R :exports code
+library(ceser)
 
-load(dcese)
-
+data(dcese)
 mod  = lm(enep ~  enpc + fapres + enpcfapres + proximity + eneg + logmag + logmag_eneg , data=dcese)
 
 ## --------------------------------------
