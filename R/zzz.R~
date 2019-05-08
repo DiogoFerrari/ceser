@@ -1,0 +1,12 @@
+#' @importFrom magrittr %>%
+
+
+
+.onAttach<- function(libname, pkgname) 
+{
+ packageStartupMessage('
+
+ ## ceser package
+
+ ')
+} 

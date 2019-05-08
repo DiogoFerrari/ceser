@@ -1,0 +1,278 @@
+
+
+
+## {{{ docs }}}
+#' Cluster Estimated Standard Errors
+#'
+#' Compute the Cluster Estimated Standard Errors (CESE)
+#'
+#'
+#' @param x a model object. It can be the output of the functions \code{lm} or \code{glm}.
+#' @param cluster either a formula \code{~ rhs} with a summation expression with the name of each variable to use to cluster the data replacing the \code{rhs}, or a vector, matrix, or data.frame with the clustering variables.
+#' @param type string with either \code{HC2} or \code{HC3} (default). Specifies the type of correction due to possible leverage effects on OLS estimates (Davidson and MacKinnon, 1993).
+#'
+#' @return what is returnts...
+#'
+#' @examples
+#'
+#' \dontrun{
+#' }
+#' @export
+## }}}
+vcovCESE_init <- function(x, cluster = NULL, type=c("HC", "HC1"))
+{
+    options(warn=-1)
+    on.exit(options(warn=0))
+    
+    #x = mod.crse
+    X         = model.matrix(x) %>% tibble::as_tibble(.) 
+    n         = nrow(X)
+    k         = ncol(X)
+    Sigma.hat = matrix(NA, nrow = k, ncol=k, dimnames=list(names(X),names(X)))
+
+    ## select cluster variable
+    ## if cluster is not provided (NULL), it can be an attribute of the model. If so, get that info
+    if (is.null(cluster)) cluster <- attr(x, "cluster")
+    ## if cluster is not supplied and no attribute have that info, use observarion level cluster
+    if (is.null(cluster)) cluster <- 1L:n
+    ## if cluster variable is provided, get the info from expanded data
+    ## check for error
+    if (stats::expand.model.frame(., 'country')) {
+        
+    }
+    ## collect 'cluster' variables in a data frame
+    if(inherits(cluster, "formula")) {
+        tryCatch(
+        {
+            cluster_tmp <- stats::expand.model.frame(x, cluster, na.expand = FALSE)
+            cluster     <- stats::model.frame(cluster, cluster_tmp, na.action = na.pass)
+        },
+        error = function() message("Check the names of the variables used to cluster the standard error in the parameter 'cluster'.")
+        )
+        
+    } else {
+        tryCatch(
+        {
+            cluster <- as.data.frame(cluster)
+        },
+        error = function() message("Check the names of the variables used to cluster the standard error in the parameter 'cluster'.")
+        )
+    }
+    
+    return(NULL)
+
+}
+
+## {{{ docs }}}
+#' Cluster Estimated Standard Errors
+#'
+#' Compute the Cluster Estimated Standard Errors (CESE)
+#'
+#'
+#' @param x a model object. It can be the output of the functions \code{lm} or \code{glm}.
+#' @param cluster either a formula \code{~ rhs} with a summation expression with the name of each variable to use to cluster the data replacing the \code{rhs}, or a vector, matrix, or data.frame with the clustering variables.
+#' @param type string with either \code{HC2} or \code{HC3} (default). Specifies the type of correction due to possible leverage effects on OLS estimates (Davidson and MacKinnon, 1993).
+#'
+#' @return what is returnts...
+#'
+#' @examples
+#'
+#' \dontrun{
+#' }
+#' @export
+## }}}
+vcovCESE <- function(x, cluster = NULL, type=NULL)
+{
+    options(warn=-1)
+    on.exit(options(warn=0))
+    
+    #x = mod.crse
+    mod       = x
+    X         = model.matrix(x) %>% tibble::as_tibble(.) 
+    n         = nrow(X)
+
+    ## -------------------------------------------
+    ## Getting the column vector with the clusters
+    ## ------------------------------------------- 
+    ## select cluster variable. if cluster is not provided (NULL), it can be an attribute of the model. If so, get that info
+    if (is.null(cluster)) cluster <- attr(x, "cluster")
+    ## if cluster is not supplied and no attribute have that info, use observarion level cluster
+    if (is.null(cluster)) cluster <- 1L:n
+    ## if cluster variable is provided, get the info from expanded data; collect 'cluster' variables in a data frame
+    if(inherits(cluster, "formula")) {
+        tryCatch(
+        {
+            cluster.formula = update(cluster, ~ . - 1)
+            cluster_tmp <- stats::expand.model.frame(x, cluster, na.expand = FALSE)
+            cluster     <- stats::model.frame(cluster, cluster_tmp, na.action = na.pass)
+        },
+        error = function(e) stop("\n\nCheck the names of the variables used to cluster the standard error in the parameter 'cluster'.")
+        )
+        
+    } else {
+        tryCatch(
+        {
+            cluster <- as.data.frame(cluster)
+            cluster.formula = paste0(" ~ ", paste0(names(cluster), collapse="+"), "- 1") %>% as.formula
+        },
+        error = function(e) stop("\n\nCheck the names of the variables used to cluster the standard error in the parameter 'cluster'.")
+        )
+    }
+
+    ## handle omitted or excluded observations
+    if((n != nrow(cluster)) && !is.null(x$na.action) && (class(x$na.action) %in% c("exclude", "omit"))) {
+        cluster <- cluster[-x$na.action, , drop = FALSE]
+    }
+    if(nrow(cluster) != n) stop("\n\nThe number of observations in 'cluster' and in the data used in the regression do not match. Check the NA values.")
+
+    ## -----------------------------
+    ## Selecting levarege correction
+    ## ----------------------------- 
+    ## leverage correction Davidson and MacKinnon (1993, p. 554)
+    ## "hc0"    White SE
+    ## "hc1"    Stata's Default
+    ## "hc2"    Unbiased under homoskedasticity
+    ## "hc3"    Unbiased under homoskedasticity, Default (conservative), Davidson and MacKinnon (1993, p. 554) 
+    if(is.null(type)) {type <- "HC3"}
+    type <- match.arg(type, c("HC2", "HC3"))
+
+    ## ------------------
+    ## Computing the CESE
+    ## ------------------
+    x         = X %>% as.matrix()
+    k         = ncol(x)
+    Sigma.hat = matrix(NA, nrow = k, ncol=k, dimnames=list(names(x),names(x)))
+    ng        = cluster %>% dplyr::group_by_all() %>% dplyr::mutate(ng = dplyr::n())  %>% dplyr::ungroup(.)  %>% dplyr::select(ng) 
+    nclusters = cluster %>% dplyr::filter(!duplicated(.)) %>% nrow(.)
+    err       = matrix(0, nrow=1,ncol=3)
+
+
+    I    = diag(n)
+    iota = model.matrix(cluster.formula, cluster)
+    ddp  = iota %*% t(iota)
+
+    xpx  = t(x) %*% x
+    xpxi = solve(xpx)
+    Pf   = x %*% xpxi %*% t(x)
+    M    = matrix(diag(I - Pf) , nrow=n)
+    xiix = t(x) %*% ddp %*% x
+    P    = matrix(0, nrow=n, ncol=n) # it might be Pg
+    for (i in 1:n)
+    {
+        for (j in i:n)
+        {
+            P[j, i] = Pf[j, i] * ddp[j, i]
+            P[i, j] = P[j, i]
+        }
+    }
+
+    Z  = x %*% xpxi %*% xiix %*% xpxi %*% t(x)
+    Zg = matrix(0, ncol=n, nrow=n)
+    for (i in 1:n)
+    {
+        for (j in i:n)
+        {
+            Zg[j, i] = Z[j, i] * ddp[j, i]
+            Zg[i, j] = Zg[j, i]
+        }
+    }
+
+    sumZ = 0
+    for (i in 1:n)
+    {
+        j.ini = (i+1)
+        if (j.ini<=n) {
+            for (j in j.ini:n)
+            {
+                sumZ = sumZ + Zg[j, i]
+            }
+        }
+    }
+
+    Q1 = I - P
+    Q2 = ddp - Q1 - P %*% ddp - ddp %*% P + Zg
+    
+
+    Q1_2 = 0
+    Q1Q2 = 0
+    Q2_2 = 0
+
+    ##
+    ## Computing q1Tq1, etc.
+    t      = 0
+    ng.vec = ng %>% dplyr::pull(.)
+    for (k in 1:nclusters)
+    {
+        i.ini = t + 1
+        i.end = t + ng.vec[t+1]
+        for (i in i.ini:i.end)
+        {
+            j.ini = i
+            j.end =  t + ng.vec[t+1]
+            for (j in j.ini:j.end)
+            {
+                Q1_2 = Q1_2 + Q1[j, i]^2
+                Q1Q2 = Q1Q2 + Q1[j, i]*Q2[j, i]
+                Q2_2 = Q2_2 + Q2[j, i]^2
+            }
+        }
+        t = t + ng.vec[t+1]
+    }
+
+    ## 
+    ## compute squares and cross-products matrix and its inverse
+    ## 
+    z  = matrix(c(Q1_2, Q1Q2, Q1Q2, Q2_2), ncol=2, nrow=2, byrow=F)
+    zi = solve(z)
+
+    ## residuals
+    e = residuals(mod)
+    if (type=="HC2") {e = e/sqrt(1 - diag(P))}
+    if (type=="HC3") {e = e/(1 - diag(P))}
+    
+    ## cross-products
+    eep = e %*% t(e)
+    
+    ## 
+    ## matrices for accumulating Q'e
+    ## 
+    Qe     = matrix(0, nrow=2, ncol=1)
+    t      = 0
+    ng.vec = ng %>% dplyr::pull(.)
+    for (k in 1:nclusters)
+    {
+        i.ini = t + 1
+        i.end = t + ng.vec[t+1]
+        for (i in i.ini:i.end)
+        {
+            j.ini = i
+            j.end = t + ng.vec[t+1]
+            for (j in j.ini:j.end)
+            {
+                Qe[1,1] = Qe[1,1] + eep[j,i]*Q1[j,i]
+                Qe[2,1] = Qe[2,1] + eep[j,i]*Q2[j,i]
+            }
+        }
+        t = t + ng.vec[t+1]
+    }
+
+    ## compute estimates for sigma and rho (Sigma.hat)
+    sighat = zi %*% Qe 
+
+    ## -----------
+    ## Corrections
+    ## ----------- 
+    ## err = 1 if rho > sigma
+    err[1,1] =  1*(sighat[2,1] >= sighat[1,1])
+    ## make adjustment if err == 1
+    sighat[1,1] = (sighat[2,1]< sighat[1,1])*sighat[1,1] + (sighat[2,1] >= sighat[1,1])*(sighat[2,1]+.02) 
+
+    ## 
+    ## compute estimated standard errors from sighat
+    ## 
+    sigv       = sighat[2,1]*ddp
+    diag(sigv) = sighat[1,1]
+    sb = xpxi %*% t(x) %*% sigv %*% x %*%  xpxi
+
+    return(sb)
+}
