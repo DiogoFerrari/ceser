@@ -4,23 +4,53 @@
 \alias{vcovCESE}
 \title{Cluster Estimated Standard Errors}
 \usage{
-vcovCESE(x, cluster = NULL, type = NULL)
+vcovCESE(mod, cluster = NULL, type = NULL)
 }
 \arguments{
-\item{x}{a model object. It can be the output of the functions \code{lm} or \code{glm}.}
+\item{mod}{a model object. It can be the output of the functions \code{lm} or \code{glm}.}
 
 \item{cluster}{either a formula \code{~ rhs} with a summation expression with the name of each variable to use to cluster the data replacing the \code{rhs}, or a vector, matrix, or data.frame with the clustering variables.}
 
 \item{type}{string with either \code{HC2} or \code{HC3} (default). Specifies the type of correction due to possible leverage effects on OLS estimates (Davidson and MacKinnon, 1993).}
 }
 \value{
-what is returnts...
+The function returns a variance-covariace matrix of the coefficient estimates using the Cluster Estimated Standard Error (CESE) method
 }
 \description{
-Compute the Cluster Estimated Standard Errors (CESE)
+Cluster Estimated Standard Errors (CESE)
 }
 \examples{
 
-\dontrun{
+mod  = lm(enep ~  enpc + fapres + enpcfapres + proximity + eneg + logmag + logmag_eneg , data=dcese)
+
+## --------------------------------------
+## Getting the variance covariance matrix
+## -------------------------------------- 
+## Original variance-covariance matrix (no clustered std. errors)
+vcov(mod)
+
+## Variance-covariance matrix using CRSE (sandwish package)
+## sandwich::vcovCL(mod, cluster = ~ country)
+## sandwich::vcovCL(mod, cluster = ~ country, type="HC3")
+
+## Variance-covariance matrix using CESE
+ceser::vcovCESE(mod, cluster = ~ country)
+ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
+
+## ---------
+## Summaries
+## ---------
+## no robust SE 
+summary(mod)                                                                          
+
+## summary table using CRSE (sandwich package)
+## lmtest::coeftest(mod, vcov = sandwich::vcovCL, cluster = ~ country)                   
+
+## summary using CESE
+lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
+
+
 }
+\references{
+Jackson, John (2019) Corrected Standard Errors with Clustered Data. Political Analysis.
 }
