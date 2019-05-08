@@ -1,5 +1,5 @@
 
-* CESET @@html:<img src='man/figures/logo.png' align="right" height="139" />@@
+* CESER @@html:<img src='man/figures/logo.png' align="right" height="139" />@@
 
 #+ATTR_HTML: title="Travis ceser"
   [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
