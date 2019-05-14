@@ -3,7 +3,7 @@
 
 check.type <- function(type)
 {
-    current.implemented = c("HC2", "HC3")
+    current.implemented = c("HC0", "HC1", "HC2", "HC3", "HC4")
     if (type %!in% c("HC0", "HC1", "HC2", "HC3", "HC4" )) {
         stop("\n\nParameter 'type' must be one of: 'HC0', 'HC1', 'HC2', 'HC3', 'HC4'")
     }
@@ -12,7 +12,7 @@ check.type <- function(type)
     }
     invisible(NULL)
 }
-get.residuals  <- function(mod, P, type)
+get.residuals  <- function(mod, P, type, n, k)
 {
     ## -----------------------------
     ## Selecting levarege correction
@@ -25,10 +25,18 @@ get.residuals  <- function(mod, P, type)
     ## if(is.null(type)) {type <- "HC3"}
     ## type <- match.arg(type, c("HC2", "HC3"))
 
-    e = stats::residuals(mod)
+    e   = stats::residuals(mod)
+    hii = diag(P)
     if (!is.null(type)) {
-        if (type=="HC2") {e = e/sqrt(1 - diag(P))}
-        if (type=="HC3") {e = e/(1 - diag(P))}
+        if (type=="HC0") {e = e}
+        if (type=="HC1") {e = e * ( sqrt(n/(n-k)) )}
+        if (type=="HC2") {e = e * ( 1/sqrt(1 - hii) )}
+        if (type=="HC3") {e = e * ( 1/(1 - hii) )}
+        if (type=="HC4") {
+            deltai = purrr::map_dbl(.x= hii*(n/k), function(x) min(4, x))
+            v      = purrr::map2_dbl(.x=hii, .y=deltai, function(hii, deltai) (1-hii)^deltai)
+            e      = e * ( 1/sqrt(v) )
+        }
     }
     return(e)
 }
@@ -172,13 +180,17 @@ get.Qe <- function(Q1, Q2, eep, ng, nclusters)
 #' Cluster Estimated Standard Errors (CESE)
 #'
 #'
-#' @param mod a model object. It can be the output of the functions \code{lm} or \code{glm}.
-#' @param cluster either a formula \code{~ rhs} with a summation expression with the name of each variable to use to cluster the data replacing the \code{rhs}, or a vector, matrix, or data.frame with the clustering variables.
-#' @param type string with either \code{HC2} or \code{HC3} (default). Specifies the type of correction due to possible leverage effects on OLS estimates (Davidson and MacKinnon, 1993).
+#' @param mod a model object. It can be the output of the functions \code{lm}, \code{glm}, or other regression function that returns compatible objects.
+#' @param cluster either a string vector with the name of the variables that will be used to cluster the standard errors, or a formula - e.g., ~ rhs, with a summation of the variables that will be used to cluster the standard errors replacing the \code{rhs} -, or a vector, matrix, or data.frame with the clustering data.
+#' @param type string with either \code{HC0}, \code{HC1}, \code{HC2}, \code{HC3}, or \code{HC4}. It specifies the type of heteroskedasticity correction to use  (see Davidson and MacKinnon (1993) and Hayes and Cai (2007)).
 #'
-#' @return The function returns a variance-covariace matrix of the coefficient estimates using the Cluster Estimated Standard Error (CESE) method
+#' @return The function returns a variance-covariace matrix of the coefficient estimates using the Cluster Estimated Standard Error (CESE) method.
 #' @references
 #' Jackson, John (2019) Corrected Standard Errors with Clustered Data. Political Analysis.
+#' 
+#' Hayes, A. F., & Cai, L., (2007) Using heteroskedasticity-consistent standard error estimators in ols regression: an introduction and software implementation, Behavior research methods, 39(4), 709–722.
+#' 
+#' Davidson, R., & MacKinnon, J. G., (2004) Econometric theory and methods: Oxford University Press New York.
 #' 
 #' @examples
 #' 
@@ -275,7 +287,7 @@ vcovCESE <- function(mod, cluster = NULL, type=NULL)
     zi = solve(z)
 
     ## residuals
-    e = get.residuals(mod, Pg, type)
+    e = get.residuals(mod, Pg, type, n, k)
     
     ## cross-products
     eep = e %*% t(e)

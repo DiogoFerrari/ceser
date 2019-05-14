@@ -7,14 +7,14 @@
 vcovCESE(mod, cluster = NULL, type = NULL)
 }
 \arguments{
-\item{mod}{a model object. It can be the output of the functions \code{lm} or \code{glm}.}
+\item{mod}{a model object. It can be the output of the functions \code{lm}, \code{glm}, or other regression function that returns compatible objects.}
 
-\item{cluster}{either a formula \code{~ rhs} with a summation expression with the name of each variable to use to cluster the data replacing the \code{rhs}, or a vector, matrix, or data.frame with the clustering variables.}
+\item{cluster}{either a string vector with the name of the variables that will be used to cluster the standard errors, or a formula - e.g., ~ rhs, with a summation of the variables that will be used to cluster the standard errors replacing the \code{rhs} -, or a vector, matrix, or data.frame with the clustering data.}
 
-\item{type}{string with either \code{HC2} or \code{HC3} (default). Specifies the type of correction due to possible leverage effects on OLS estimates (Davidson and MacKinnon, 1993).}
+\item{type}{string with either \code{HC0}, \code{HC1}, \code{HC2}, \code{HC3}, or \code{HC4}. It specifies the type of heteroskedasticity correction to use  (see Davidson and MacKinnon (1993) and Hayes and Cai (2007)).}
 }
 \value{
-The function returns a variance-covariace matrix of the coefficient estimates using the Cluster Estimated Standard Error (CESE) method
+The function returns a variance-covariace matrix of the coefficient estimates using the Cluster Estimated Standard Error (CESE) method.
 }
 \description{
 Cluster Estimated Standard Errors (CESE)
@@ -53,4 +53,8 @@ lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
 }
 \references{
 Jackson, John (2019) Corrected Standard Errors with Clustered Data. Political Analysis.
+
+Hayes, A. F., & Cai, L., (2007) Using heteroskedasticity-consistent standard error estimators in ols regression: an introduction and software implementation, Behavior research methods, 39(4), 709–722.
+
+Davidson, R., & MacKinnon, J. G., (2004) Econometric theory and methods: Oxford University Press New York.
 }
