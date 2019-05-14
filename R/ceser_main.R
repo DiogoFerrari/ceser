@@ -37,7 +37,7 @@ check.clusters <- function(mod, cluster)
     if (! (class(cluster) %in% c("formula", "character") | is.null(cluster)) ) {
         stop("\n\nThe values of the parameter 'cluster' of the function vcovCESE() must be either a string vector with the names of the variables to cluster, a formula in which the RHS contains the variables to clusters, or 'NULL'. See documentation of vcovCESE().")
     }
-    if (class(cluster) == 'character') {cluster = paste0(" ~ ", paste0(cluster, collapse = " + ") )  %>% stats::as.formula}
+    if (class(cluster) == 'character') {cluster = paste0(" ~ ", paste0(cluster, collapse = " + ") )  %>% stats::as.formula(.)}
     if (!is.null(cluster)) {
         tryCatch(
         {
@@ -53,7 +53,7 @@ get.clusters <- function(mod, cluster, n)
     if (is.null(cluster)) cluster <- attr(mod, "cluster")    ## select cluster variable. if cluster is not provided (NULL), it can be an attribute of the model. If so, get that info
     if (is.null(cluster)) cluster <- 1L:n                  ## if cluster is not supplied and no attribute have that info, use observarion level cluster
     if(!inherits(cluster, "formula")) {                     ## inherits return TRUE if cluster is a formula
-        cluster.formula = paste0("~", paste0(cluster, collapse=" + " ) )  %>% stats::as.formula
+        cluster.formula = paste0("~", paste0(cluster, collapse=" + " ) )  %>% stats::as.formula(.)
     }else{
         cluster.formula = cluster 
     }
