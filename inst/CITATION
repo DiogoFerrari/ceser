@@ -1,0 +1,12 @@
+citHeader("To cite CESER in publications use:")
+citEntry(entry = "manual",
+         title = "ceser: Cluster Estimated Standard Errors in R",
+         author = personList(as.person("Diogo Ferrari"), as.person("John Jackson")),
+         year = "2019",
+         note = "R package version 0.0.0.9000",
+         textVersion = paste("Ferrari, Diogo and Jackson, john", 
+                             "(2019)",
+                             "ceser: Cluster Estimated Standard Errors in R.",
+                             "R package version 0.0.0.9000"
+                             )
+         )
