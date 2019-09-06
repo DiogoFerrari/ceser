@@ -5,8 +5,6 @@ template:
   params:
     bootswatch: flatly
 
-
-
 authors:
   Diogo Ferrari:
     href: http://diogoferrari.com
