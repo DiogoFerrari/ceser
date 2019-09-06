@@ -20,4 +20,6 @@ navbar:
       menu:
       - text: 'Paper'
         href: articles/ceser-jss_jj.pdf
-
+    # right:
+    #   text: Diogo Ferrari
+    #   href: http://diogoferrari.com

@@ -1,5 +1,9 @@
 pandoc: 1.19.2.4
 pkgdown: 1.4.0
 pkgdown_sha: ~
-articles: []
+articles:
+  ceser: ceser.html
+urls:
+  reference: http://diogoferrari.github.io/ceser/reference
+  article: http://diogoferrari.github.io/ceser/articles
 
