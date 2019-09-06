@@ -1,7 +1,10 @@
 title: CESER
-url: http://ceser.github.io/ceser
+url: http://diogoferrari.github.io/ceser
 
-destination: docs
+template:
+  params:
+    bootswatch: flatly
+
 
 
 authors:
