@@ -1,7 +1,7 @@
 ---
 title: "Introdution to ceser"
 output: rmarkdown::html_vignette
-bibliography: /home/diogo/Dropbox/CienciasSociais/references/references.bib
+bibliography: references.bib
 vignette: >
   %\VignetteIndexEntry{ceser}
   %\VignetteEngine{knitr::rmarkdown}
