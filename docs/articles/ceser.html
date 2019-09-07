@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Introcution to ceser • CESER</title>
+<title>Introdution to ceser • CESER</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Introcution to ceser">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Introdution to ceser">
 <meta property="og:description" content="">
 <meta property="og:image" content="http://diogoferrari.github.io/ceser/logo.png">
 <meta name="twitter:card" content="summary">
@@ -92,7 +92,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Introcution to ceser</h1>
+      <h1>Introdution to ceser</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/DiogoFerrari/ceser/blob/master/vignettes/ceser.Rmd"><code>vignettes/ceser.Rmd</code></a></small>
@@ -102,15 +102,15 @@
 
     
     
-<div id="ceser-cluster-estimated-standard-errors-cese-in-r" class="section level2">
+<div id="summary" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ceser-cluster-estimated-standard-errors-cese-in-r" class="anchor"></a>ceser: Cluster Estimated Standard Errors (CESE) in R</h2>
-<p>The <strong>ceser</strong> package contains an implementation in R of the Cluster Estimated Standard Error (CESE) proposed by <span class="citation">Jackson (2019)</span>. The method estimates the covariance matrix of the estimated coefficients of linear models in grouped data sets with correlation among observations within groups. CESE is an alternative solution for the classical Cluster Robust Standard Error (CRSE) (<span class="citation">Greene (2012)</span>,<span class="citation">Eicker (1967)</span>,<span class="citation">White (1980)</span>,<span class="citation">Liang and Zeger (1986)</span>,<span class="citation">MacKinnon and Webb (2017)</span>), which underestimates the standard errors in most of the situations encountered in practice (<span class="citation">Esarey and Menger (2018)</span>).</p>
+<a href="#summary" class="anchor"></a>Summary</h2>
+<p>The <strong>ceser</strong> package contains an implementation in R of the Cluster Estimated Standard Error (CESE) method proposed by <span class="citation">Jackson (2019)</span>. The method estimates the covariance matrix of the estimated coefficients of linear models in grouped data sets with correlation among observations within groups. CESE is an alternative solution for the classical Cluster Robust Standard Error (CRSE) (<span class="citation">Greene (2012)</span>,<span class="citation">Eicker (1967)</span>,<span class="citation">White (1980)</span>,<span class="citation">Liang and Zeger (1986)</span>,<span class="citation">MacKinnon and Webb (2017)</span>), which underestimates the standard errors in most of the situations encountered in practice (<span class="citation">Esarey and Menger (2018)</span>).</p>
 </div>
 <div id="technical-details" class="section level2">
 <h2 class="hasAnchor">
 <a href="#technical-details" class="anchor"></a>Technical Details</h2>
-<p><span class="citation">Jackson (2019)</span> proposes an approach labeled CESE to estimate the standard errors in grouped data with within-group correlation in the residuals. The approach is based on the estimated expectation of the product of the residuals. Assuming that the residuals have the same variance-covariance matrix within the groups, if we denote by <span class="math inline">\(\sigma_{ig} = \sigma_{g}^{2}\)</span> and <span class="math inline">\(\rho_{ig} = \rho_{g}\)</span> the variance and the covariance, respectively, of the residuals within the group <span class="math inline">\(g\)</span>, then the expectation of the product of the residuals is given by (see <span class="citation">Jackson (2019)</span> for details):</p>
+<p><span class="citation">Jackson (2019)</span> proposes an approach labeled CESE to estimate the standard errors in grouped data with within-group correlation in the residuals. The approach is based on the estimated expectation of the product of the residuals. Assuming that the residuals have the same variance-covariance matrix within the groups, if we denote by <span class="math inline">\(\sigma_{ig} = \sigma_{g}^{2}\)</span> and <span class="math inline">\(\rho_{ig} = \rho_{g}\)</span> the variance and covariance, respectively, of the residuals within the group <span class="math inline">\(g\)</span>, then the expectation of the product of the residuals is given by (see <span class="citation">Jackson (2019)</span> for details):</p>
 <span class="math display">\[\begin{align}
 \displaystyle\label{eq-exp-ee}
 \begin{split}
@@ -118,12 +118,12 @@
  + X_g(X^{T}X)^{-1} \left( \sum_{g=1}^{G} X_{g}^{T}\iota_{g} \iota_{g}^{T} X_g \right)(X^{T}X)^{-1}X_g \bigg]
 \end{split}
 \end{align}\]</span>
-<p>where <span class="math inline">\(\iota_{g}\)</span> is a unitary column vector, <span class="math inline">\(I_g\)</span> is a <span class="math inline">\(g \times g\)</span> identity matrix, and <span class="math inline">\(P_g = X_g (X^{T}X)^{-1}X_{g}^{T}\)</span>. Equation () can be rewriten concisely as:</p>
+<p>where <span class="math inline">\(\iota_{g}\)</span> is a unitary column vector, <span class="math inline">\(I_g\)</span> is a <span class="math inline">\(g \times g\)</span> identity matrix, and <span class="math inline">\(P_g = X_g (X^{T}X)^{-1}X_{g}^{T}\)</span>. The equation above can be rewritten concisely as:</p>
 <span class="math display">\[\begin{align}
 \displaystyle\label{eq-exp-ee-reduced}
 \Sigma_{g}^{} = \sigma_{g}^{2} Q_{1g} + \rho_{g} Q_{2g}.
 \end{align}\]</span>
-<p>The equation above explicitly shows that the expectation of the cross-product of the residuals is a function the data through <span class="math inline">\(Q_{1g}\)</span> and <span class="math inline">\(Q_{2g}\)</span> and the unknown variance <span class="math inline">\(\sigma_{g}^{2}\)</span> and correlation <span class="math inline">\(\rho_{g}\)</span> of the residuals <span class="math inline">\(e_g\)</span> in each group <span class="math inline">\(g\)</span>. The CESE solution is to explore the linear structure of equation () and to estimate <span class="math inline">\(\sigma_{g}^{2}\)</span> and <span class="math inline">\(\rho_{g}\)</span>  the estimated values of <span class="math inline">\(e_g e_{g}^{T}\)</span> were random deviances from their expectations. Denote <span class="math inline">\(\xi\)</span> that deviance. Then</p>
+<p>This equation explicitly shows that the expectation of the cross-product of the residuals is a function the data through <span class="math inline">\(Q_{1g}\)</span>, <span class="math inline">\(Q_{2g}\)</span>, the unknown variance <span class="math inline">\(\sigma_{g}^{2}\)</span>, and correlation <span class="math inline">\(\rho_{g}\)</span> of the residuals <span class="math inline">\(e_g\)</span> in each group <span class="math inline">\(g\)</span>. The CESE solution is to explore the linear structure of that equation and estimate <span class="math inline">\(\sigma_{g}^{2}\)</span> and <span class="math inline">\(\rho_{g}\)</span> <em>as if</em> the estimated values of <span class="math inline">\(e_g e_{g}^{T}\)</span> were random deviances from their expectations. Denote <span class="math inline">\(\xi\)</span> that deviance. Then</p>
 <span class="math display">\[\begin{align}
 \displaystyle\label{eq-cese-reg}
 \begin{split}
@@ -141,7 +141,7 @@ e_g e_{g}^{T} &amp;= \mathbb{E}[e_g e_{g}^{T}] + \xi \\
 \displaystyle\label{eq-cese-concise}
 \hat{\Omega}_{g} = (q_g^{T}q_g)^{-1}q_g^{T}s_{eg}.
 \end{align}\]</span>
-<p>We can rewrite the equation () as:</p>
+<p>We can rewrite the equation above as:</p>
 <span class="math display">\[\begin{align}
 \displaystyle\label{eq-cese-matrix }
 \begin{bmatrix}
@@ -170,7 +170,7 @@ e_g e_{g}^{T} &amp;= \mathbb{E}[e_g e_{g}^{T}] + \xi \\
 <p>To cluster by country and gender, simply use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vcovCESE</span>(..., <span class="dt">cluster =</span> <span class="op">~</span><span class="st"> </span>country <span class="op">+</span><span class="st"> </span>gender, ...)</code></pre></div>
 <p>The parameter <code>cluster</code> can also receive, instead of a formula, a string vector with the name of the variables that contain the groups to cluster the standard errors. If <code>cluster = NULL</code>, each observation is considered its own group to cluster the standard errors.</p>
-<p>The parameter <code>type</code> receives the procedure to use for heterokedasticity correction. Heterokedasticity occurs when the diagonal elements of <span class="math inline">\(\Sigma\)</span> are not constant across observations. The correction can also be used to deal with underestimation of the true variance of the residuals due to leverage produced by outliers. We include five types of correction. In particular, <code>type</code> can be either “HC0”, “HC1”, “HC2”, “HC3”, and “HC4” <span class="citation">Hayes and Cai (2007)</span>. Denote <span class="math inline">\(e_c\)</span> the corrected residuals. Each option produce the following corretion:</p>
+<p>The parameter <code>type</code> receives the procedure to use for heterokedasticity correction. Heterokedasticity occurs when the diagonal elements of <span class="math inline">\(\Sigma\)</span> are not constant across observations. The correction can also be used to deal with underestimation of the true variance of the residuals due to leverage produced by outliers. We include five types of correction. In particular, <code>type</code> can be either “HC0”, “HC1”, “HC2”, “HC3”, and “HC4” (<span class="citation">Hayes and Cai (2007)</span>). Denote <span class="math inline">\(e_c\)</span> the corrected residuals. Each option produce the following corretion:</p>
 <span class="math display">\[\begin{array}{l@{\quad}l}
 \\
 \text{HC0: }  &amp; e_{ic} = e_i    \\
@@ -186,7 +186,7 @@ e_g e_{g}^{T} &amp;= \mathbb{E}[e_g e_{g}^{T}] + \xi \\
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>To ilustrate how to use the <strong>ceser</strong> package, we use the data set <code>dcese</code>, which is provided with the package. The data set contains information of 310 (i=1,, 310) observations across 51 countries (g=1,,51).</p>
+<p>To ilustrate how to use the <strong>ceser</strong> package, we use the data set <code>dcese</code>, which is provided with the package. The data set contains information of 310 (i=1,…, 310) observations across 51 countries (g=1,…,51).</p>
 <p>The outcome variable is the number of effective legislative parties (<em>enep</em>). The explanatory variables are: the number of presidential candidates (<em>enpc</em>); a measure of presidential power (<em>fapres</em>); the proximity of presidential and legislative elections (<em>proximity</em>); the effective number of ethnic groups (<em>eneg</em>); the log of average district magnitudes (<em>logmag</em>); an interaction term between the number of presidential candidates and the presidential power (<em>enpcfapres</em> = <em>enpc</em> <span class="math inline">\(\times\)</span> <em>fapres</em>), and another interaction term between the log of the district magnitude and the number of ethnic groups (<em>logmag_eneg</em> = <em>logmag</em> <span class="math inline">\(\times\)</span> <em>eneg</em>). In the example below, we regress <em>enpc</em> on <em>fapres</em>, <em>enpc</em>, their interaction, and other controls.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ceser)
 <span class="co">#&gt; </span>
@@ -199,7 +199,7 @@ e_g e_{g}^{T} &amp;= \mathbb{E}[e_g e_{g}^{T}] + \xi \\
 <p>Let’s estimate a linear model using the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod  =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(enep <span class="op">~</span><span class="st">  </span>enpc <span class="op">+</span><span class="st"> </span>fapres <span class="op">+</span><span class="st"> </span>enpcfapres <span class="op">+</span><span class="st"> </span>proximity
                        <span class="op">+</span><span class="st"> </span>eneg <span class="op">+</span><span class="st"> </span>logmag <span class="op">+</span><span class="st"> </span>logmag_eneg , <span class="dt">data=</span>dcese)</code></pre></div>
-<p>For all the examples below, we use the HC3 correction. To compute the variance covariance matrix of the estimated coefficients <span class="math inline">\(\hat{\beta}\)</span>, just execute:</p>
+<p>For all the examples below, we use the HC3 correction. To compute the variance covariance matrix of the estimated coefficients <span class="math inline">\(\hat{\beta}\)</span> using clustered standard errors by country, just execute:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/pkg/ceser/man/vcovCESE.html">vcovCESE</a></span>(mod, <span class="dt">cluster =</span> <span class="op">~</span>country, <span class="dt">type=</span><span class="st">"HC3"</span>)
 <span class="co">#&gt;             (Intercept)          enpc       fapres    enpcfapres</span>
 <span class="co">#&gt; (Intercept)  1.59804215 -0.3565889644 -0.326044522  0.0928614018</span>
@@ -219,7 +219,7 @@ e_g e_{g}^{T} &amp;= \mathbb{E}[e_g e_{g}^{T}] + \xi \\
 <span class="co">#&gt; eneg        -0.005680272  0.039433115  0.0481561426 -0.0231003489</span>
 <span class="co">#&gt; logmag       0.009776123  0.048156143  0.2244236813 -0.1048418029</span>
 <span class="co">#&gt; logmag_eneg  0.004471824 -0.023100349 -0.1048418029  0.0606625677</span></code></pre></div>
-<p>We can obtain the summary with CRSE by country by running:</p>
+<p>We can obtain the summary table with CESE by country by running:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lmtest)
 <span class="co">#&gt; Loading required package: zoo</span>
 <span class="co">#&gt; </span>
@@ -280,7 +280,7 @@ e_g e_{g}^{T} &amp;= \mathbb{E}[e_g e_{g}^{T}] + \xi \\
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#ceser-cluster-estimated-standard-errors-cese-in-r">ceser: Cluster Estimated Standard Errors (CESE) in R</a></li>
+<li><a href="#summary">Summary</a></li>
       <li><a href="#technical-details">Technical Details</a></li>
       <li><a href="#implementation">Implementation</a></li>
       <li><a href="#example">Example</a></li>
