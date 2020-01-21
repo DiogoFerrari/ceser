@@ -8,7 +8,8 @@
 
 The package provides a function to compute Cluster Estimated Standard Errors (CESE).
 
-For details, see Jackson, John (2019) Corrected Standard Errors with Clustered Data. Political Analysis.
+For details, see Jackson, John (2019) [[https://www.cambridge.org/core/journals/political-analysis/article/corrected-standard-errors-with-clustered-data/F2332E494290725256181955B9BC7428][Corrected Standard Errors with Clustered Data]]. /Political Analysis/.
+
 
 * Instalation
 
@@ -23,6 +24,8 @@ devtools::install_github("DiogoFerrari/ceser", dependencies=F)
 NOTE: it may be necessary to create a token to install the package from the git repository in case it is private (see note at the bottom of help page in R by running =help(install_github)=).
 
 * Usage
+
+Check the complete documentation [[http://www.diogoferrari.com/ceser/][here]] and vignette [[http://www.diogoferrari.com/ceser/articles/ceser.html][here]].
 
 Here is a simple example (for more information, see =help(ceser)= and =help(vocvCESE)=).
 
