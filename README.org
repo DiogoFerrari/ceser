@@ -8,7 +8,7 @@
 
 The package provides a function to compute Cluster Estimated Standard Errors (CESE).
 
-For details, see Jackson, John (2019) [[https://www.cambridge.org/core/journals/political-analysis/article/corrected-standard-errors-with-clustered-data/F2332E494290725256181955B9BC7428][Corrected Standard Errors with Clustered Data]]. /Political Analysis/.
+For details, see Jackson, John (2020) [[https://www.cambridge.org/core/journals/political-analysis/article/corrected-standard-errors-with-clustered-data/F2332E494290725256181955B9BC7428][Corrected Standard Errors with Clustered Data]]. /Political Analysis/, Volume 28, Issue 3July 2020 , pp. 318-339.
 
 
 * Instalation

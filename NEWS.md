@@ -1,3 +1,3 @@
-# Ceser 0.0.0.9000
+# Ceser 1.0.0
 
 * This is the first release of ceser.
