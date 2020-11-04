@@ -3,7 +3,7 @@ Title: Cluster Estimated Standard Errors
 Version: 1.0.0
 Authors@R: c(person("Diogo", "Ferrari", email="diogoferrari@gmail.com", role=c("aut", "cre")),
              person("John", "Jackson", email="jjacksn@umich.edu", role=c("aut")))
-Description: Implementation of the Cluster Estimated Standard Errors (CESE) proposed in Jackson (2020) <doi: 10.1017/pan.2019.38> to compute clustered standard errors of linear coefficients in regression models with grouped data.
+Description: Implementation of the Cluster Estimated Standard Errors (CESE) proposed in Jackson (2020) <DOI:10.1017/pan.2019.38> to compute clustered standard errors of linear coefficients in regression models with grouped data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

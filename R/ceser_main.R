@@ -231,8 +231,8 @@ vcovCESE <- function(mod, cluster = NULL, type=NULL)
     X         = stats::model.matrix(mod) %>% tibble::as_tibble(.) ## data used in the regression
     n         = nrow(X)                                    ## size of the data used in the regression
 
-    options(warn=-1)
-    on.exit(options(warn=0))
+    ## options(warn=-1)
+    ## on.exit(options(warn=0))
     
     ## -------------
     ## error control
