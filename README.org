@@ -3,8 +3,8 @@
 
 #+ATTR_HTML: title="Travis ceser"
 [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
-#+ATTR_HTML: title="CRAN ceser"
-[[https://travis-ci.org/DiogoFerrari/hdpGLM][https://www.r-pkg.org/badges/version/ceser?color=green]]
+
+[![CRAN status](https://www.r-pkg.org/badges/version/ceser?color=green)](https://cran.r-project.org/package=ceser)
 
 * Overview
 
