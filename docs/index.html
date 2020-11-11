@@ -91,7 +91,68 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-Implementation of the Cluster Estimated Standard Errors (CESE) proposed in Jackson (2020) &lt;<a href="https://doi.org/10.1017/pan.2019.38">doi:10.1017/pan.2019.38</a>&gt; to compute clustered standard errors of linear coefficients in regression models with grouped data.
+
+<div id="ceser-" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#ceser-" class="anchor"></a>CESER <img src="reference/figures/logo.png" align="right" height="139">
+</h1></div>
+
+</div>
+<div id="overview" class="section level1">
+<h1 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h1>
+<p>The package provides a function to compute Cluster Estimated Standard Errors (CESE).</p>
+<p>For details, see Jackson, John (2020) <a href="https://www.cambridge.org/core/journals/political-analysis/article/corrected-standard-errors-with-clustered-data/F2332E494290725256181955B9BC7428">Corrected Standard Errors with Clustered Data</a>. <em>Political Analysis</em>, Volume 28, Issue 3July 2020 , pp. 318-339.</p>
+</div>
+<div id="instalation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#instalation" class="anchor"></a>Instalation</h1>
+<p>From <a href="https://cran.r-project.org/web/packages/ceser/index.html">CRAN</a></p>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ceser")</a></code></pre>
+<p>To install the development version (it requires the package “devtools”):</p>
+<pre><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("DiogoFerrari/ceser")
+
+# If you don't want to update the dependencies, use: (you may need to install some dependencies manually)
+devtools::install_github("DiogoFerrari/ceser", dependencies=F)</a></code></pre>
+</div>
+<div id="usage" class="section level1">
+<h1 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h1>
+<p>Check the complete documentation <a href="http://www.diogoferrari.com/ceser/">here</a> and vignette <a href="http://www.diogoferrari.com/ceser/articles/ceser.html">here</a>.</p>
+<p>Here is a simple example (for more information, see =help(ceser)= and =help(vocvCESE)=).</p>
+<pre><code><a href="https://rdrr.io/r/base/library.html">library(ceser)
+
+data(dcese)
+mod  = lm(enep ~  enpc + fapres + enpcfapres + proximity + eneg + logmag + logmag_eneg , data=dcese)
+
+## --------------------------------------
+## Getting the variance covariance matrix
+## -------------------------------------- 
+## Original variance-covariance matrix (no clustered std. errors)
+vcov(mod)
+
+## Variance-covariance matrix using CRSE (sandwish package)
+## sandwich::vcovCL(mod, cluster = ~ country)
+## sandwich::vcovCL(mod, cluster = ~ country, type="HC3")
+
+## Variance-covariance matrix using CESE
+ceser::vcovCESE(mod, cluster = ~ country)
+ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
+
+## ---------
+## Summaries
+## ---------
+## no robust SE 
+summary(mod)                                                                          
+
+## summary table using CRSE (sandwich package)
+## lmtest::coeftest(mod, vcov = sandwich::vcovCL, cluster = ~ country)                   
+
+## summary using CESE
+lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
+</a></code></pre>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -129,7 +190,14 @@ Implementation of the Cluster Estimated Standard Errors (CESE) proposed in Jacks
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=ceser"><img src="https://www.r-pkg.org/badges/version/ceser?color=green" alt="CRAN status"></a></li>
+<li><a href="https://travis-ci.org/DiogoFerrari/ceser"><img src="https://travis-ci.org/DiogoFerrari/ceser.svg"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
