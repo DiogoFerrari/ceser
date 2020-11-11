@@ -1,37 +1,43 @@
 
-* CESER @@html:<img src='man/figures/logo.png' align="right" height="139" />@@
+CESER <img src='man/figures/logo.png' align="right" height="139" />
+===================================================================
 
-#+ATTR_HTML: title="Travis ceser"
-[[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
+[![CRAN status](https://www.r-pkg.org/badges/version/ceser?color=green)](https://cran.r-project.org/package=ceser)
+[![](https://travis-ci.org/DiogoFerrari/ceser.svg)](https://travis-ci.org/DiogoFerrari/ceser)
 
-
-* Overview
+Overview
+========
 
 The package provides a function to compute Cluster Estimated Standard Errors (CESE).
 
-For details, see Jackson, John (2020) [[https://www.cambridge.org/core/journals/political-analysis/article/corrected-standard-errors-with-clustered-data/F2332E494290725256181955B9BC7428][Corrected Standard Errors with Clustered Data]]. /Political Analysis/, Volume 28, Issue 3July 2020 , pp. 318-339.
+For details, see Jackson, John (2020) [Corrected Standard Errors with Clustered Data](https://www.cambridge.org/core/journals/political-analysis/article/corrected-standard-errors-with-clustered-data/F2332E494290725256181955B9BC7428). *Political Analysis*, Volume 28, Issue 3July 2020 , pp. 318-339.
 
 
-* Instalation
+Instalation
+===========
+From [CRAN](https://cran.r-project.org/web/packages/ceser/index.html)
 
-# Install the development version (requires the package "devtools", so install it first if it is not installed already)
+```
+install.packages("ceser")
+```
 
-#+BEGIN_SRC R :exports code
+To install the development version (it requires the package "devtools"):
+
+```
 devtools::install_github("DiogoFerrari/ceser")
+
 # If you don't want to update the dependencies, use: (you may need to install some dependencies manually)
 devtools::install_github("DiogoFerrari/ceser", dependencies=F)
-#+END_SRC
+```
 
-NOTE: it may be necessary to create a token to install the package from the git repository in case it is private (see note at the bottom of help page in R by running =help(install_github)=).
+Usage
+=====
 
-* Usage
-
-Check the complete documentation [[http://www.diogoferrari.com/ceser/][here]] and vignette [[http://www.diogoferrari.com/ceser/articles/ceser.html][here]].
+Check the complete documentation [here] (http://www.diogoferrari.com/ceser/) and vignette [here](http://www.diogoferrari.com/ceser/articles/ceser.html).
 
 Here is a simple example (for more information, see =help(ceser)= and =help(vocvCESE)=).
 
-#+NAME: 
-#+BEGIN_SRC R :exports code
+```
 library(ceser)
 
 data(dcese)
@@ -63,7 +69,4 @@ summary(mod)
 ## summary using CESE
 lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
 
-#+END_SRC
-
-
-
+```
