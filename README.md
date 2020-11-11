@@ -37,6 +37,7 @@ Check the complete documentation [here](http://www.diogoferrari.com/ceser/) and 
 
 Here is a simple example (for more information, see =help(ceser)= and =help(vocvCESE)=).
 
+
 ```
 library(ceser)
 
