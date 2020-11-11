@@ -2,10 +2,9 @@
 * CESER @@html:<img src='man/figures/logo.png' align="right" height="139" />@@
 
 #+ATTR_HTML: title="Travis ceser"
-  [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
-
+[[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
 #+ATTR_HTML: title="CRAN ceser"
-  [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://www.r-pkg.org/badges/version/ceser?color=green]]
+[[https://travis-ci.org/DiogoFerrari/hdpGLM][https://www.r-pkg.org/badges/version/ceser?color=green]]
 
 * Overview
 
