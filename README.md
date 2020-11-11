@@ -33,7 +33,7 @@ devtools::install_github("DiogoFerrari/ceser", dependencies=F)
 Usage
 =====
 
-Check the complete documentation [here] (http://www.diogoferrari.com/ceser/) and vignette [here](http://www.diogoferrari.com/ceser/articles/ceser.html).
+Check the complete documentation [here](http://www.diogoferrari.com/ceser/) and vignette [here](http://www.diogoferrari.com/ceser/articles/ceser.html).
 
 Here is a simple example (for more information, see =help(ceser)= and =help(vocvCESE)=).
 
