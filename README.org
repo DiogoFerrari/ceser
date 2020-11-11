@@ -4,6 +4,9 @@
 #+ATTR_HTML: title="Travis ceser"
   [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://travis-ci.org/DiogoFerrari/ceser.svg]]
 
+#+ATTR_HTML: title="CRAN ceser"
+  [[https://travis-ci.org/DiogoFerrari/hdpGLM][file:https://www.r-pkg.org/badges/version/ceser?color=green]]
+
 * Overview
 
 The package provides a function to compute Cluster Estimated Standard Errors (CESE).

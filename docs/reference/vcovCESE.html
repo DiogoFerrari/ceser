@@ -17,27 +17,23 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
-
-<!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -49,6 +45,7 @@
 <meta property="og:title" content="Cluster Estimated Standard Errors — vcovCESE" />
 <meta property="og:description" content="Cluster Estimated Standard Errors (CESE)" />
 <meta property="og:image" content="http://diogoferrari.github.io/ceser/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -66,7 +63,7 @@
 
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -116,7 +113,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/DiogoFerrari/ceser/">
+  <a href="https://github.com/DiogoFerrari/ceser">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -143,7 +140,7 @@
     <p>Cluster Estimated Standard Errors (CESE)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vcovCESE</span><span class='op'>(</span><span class='va'>mod</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, type <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>vcovCESE</span>(<span class='no'>mod</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,14 +170,13 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='va'>mod</span>  <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>enep</span> <span class='op'>~</span>  <span class='va'>enpc</span> <span class='op'>+</span> <span class='va'>fapres</span> <span class='op'>+</span> <span class='va'>enpcfapres</span> <span class='op'>+</span> <span class='va'>proximity</span> <span class='op'>+</span> <span class='va'>eneg</span> <span class='op'>+</span> <span class='va'>logmag</span> <span class='op'>+</span> <span class='va'>logmag_eneg</span> , data<span class='op'>=</span><span class='va'>dcese</span><span class='op'>)</span>
+<span class='no'>mod</span>  <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='no'>enep</span> ~  <span class='no'>enpc</span> + <span class='no'>fapres</span> + <span class='no'>enpcfapres</span> + <span class='no'>proximity</span> + <span class='no'>eneg</span> + <span class='no'>logmag</span> + <span class='no'>logmag_eneg</span> , <span class='kw'>data</span><span class='kw'>=</span><span class='no'>dcese</span>)
 
 <span class='co'>## --------------------------------------</span>
 <span class='co'>## Getting the variance covariance matrix</span>
 <span class='co'>## -------------------------------------- </span>
 <span class='co'>## Original variance-covariance matrix (no clustered std. errors)</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/vcov.html'>vcov</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;             (Intercept)         enpc        fapres    enpcfapres     proximity
+<span class='fu'><a href='https://rdrr.io/r/stats/vcov.html'>vcov</a></span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt;             (Intercept)         enpc        fapres    enpcfapres     proximity
 #&gt; (Intercept)  0.34193367 -0.080109404 -6.498717e-02  0.0227605333 -0.0416369373
 #&gt; enpc        -0.08010940  0.035696550  2.401318e-02 -0.0102825206  0.0059204296
 #&gt; fapres      -0.06498717  0.024013177  2.734250e-02 -0.0090017922 -0.0004345205
@@ -203,8 +199,7 @@
 <span class='co'>## sandwich::vcovCL(mod, cluster = ~ country, type="HC3")</span>
 
 <span class='co'>## Variance-covariance matrix using CESE</span>
-<span class='fu'>ceser</span><span class='fu'>::</span><span class='fu'>vcovCESE</span><span class='op'>(</span><span class='va'>mod</span>, cluster <span class='op'>=</span> <span class='op'>~</span> <span class='va'>country</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;             (Intercept)          enpc       fapres   enpcfapres    proximity
+<span class='kw pkg'>ceser</span><span class='kw ns'>::</span><span class='fu'><a href='http://diogoferrari.github.io/ceser/reference/vcovCESE.html'>vcovCESE</a></span>(<span class='no'>mod</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> ~ <span class='no'>country</span>)</div><div class='output co'>#&gt;             (Intercept)          enpc       fapres   enpcfapres    proximity
 #&gt; (Intercept)  1.51221650 -0.3374255708 -0.308548972  0.087864892 -0.082214926
 #&gt; enpc        -0.33742557  0.1187065304  0.099198869 -0.033556819 -0.003174936
 #&gt; fapres      -0.30854897  0.0991988687  0.135525330 -0.036883799 -0.016929595
@@ -221,8 +216,7 @@
 #&gt; proximity   -0.005366609  0.0092653603  0.004237610
 #&gt; eneg         0.037272375  0.0455315878 -0.021837494
 #&gt; logmag       0.045531588  0.2123302156 -0.099187086
-#&gt; logmag_eneg -0.021837494 -0.0991870859  0.057389251</div><div class='input'><span class='fu'>ceser</span><span class='fu'>::</span><span class='fu'>vcovCESE</span><span class='op'>(</span><span class='va'>mod</span>, cluster <span class='op'>=</span> <span class='op'>~</span> <span class='va'>country</span>, type<span class='op'>=</span><span class='st'>"HC3"</span><span class='op'>)</span> <span class='co'># HC3 correction</span>
-</div><div class='output co'>#&gt;             (Intercept)          enpc       fapres    enpcfapres    proximity
+#&gt; logmag_eneg -0.021837494 -0.0991870859  0.057389251</div><div class='input'><span class='kw pkg'>ceser</span><span class='kw ns'>::</span><span class='fu'><a href='http://diogoferrari.github.io/ceser/reference/vcovCESE.html'>vcovCESE</a></span>(<span class='no'>mod</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> ~ <span class='no'>country</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"HC3"</span>) <span class='co'># HC3 correction</span></div><div class='output co'>#&gt;             (Intercept)          enpc       fapres    enpcfapres    proximity
 #&gt; (Intercept)  1.59804215 -0.3565889644 -0.326044522  0.0928614018 -0.086958688
 #&gt; enpc        -0.35658896  0.1254735451  0.104834222 -0.0354704134 -0.003332760
 #&gt; fapres      -0.32604452  0.1048342220  0.143205927 -0.0389793642 -0.017878997
@@ -244,8 +238,7 @@
 <span class='co'>## Summaries</span>
 <span class='co'>## ---------</span>
 <span class='co'>## no robust SE </span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod</span><span class='op'>)</span>                                                                          
-</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = enep ~ enpc + fapres + enpcfapres + proximity + 
 #&gt;     eneg + logmag + logmag_eneg, data = dcese)
@@ -275,8 +268,7 @@
 <span class='co'>## lmtest::coeftest(mod, vcov = sandwich::vcovCL, cluster = ~ country)                   </span>
 
 <span class='co'>## summary using CESE</span>
-<span class='fu'>lmtest</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lmtest/man/coeftest.html'>coeftest</a></span><span class='op'>(</span><span class='va'>mod</span>, vcov <span class='op'>=</span> <span class='fu'>ceser</span><span class='fu'>::</span><span class='va'>vcovCESE</span>, cluster <span class='op'>=</span> <span class='op'>~</span> <span class='va'>country</span>, type<span class='op'>=</span><span class='st'>'HC3'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
+<span class='kw pkg'>lmtest</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lmtest/man/coeftest.html'>coeftest</a></span>(<span class='no'>mod</span>, <span class='kw'>vcov</span> <span class='kw'>=</span> <span class='kw pkg'>ceser</span><span class='kw ns'>::</span><span class='no'><a href='http://diogoferrari.github.io/ceser/reference/vcovCESE.html'>vcovCESE</a></span>, <span class='kw'>cluster</span> <span class='kw'>=</span> ~ <span class='no'>country</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'HC3'</span>)</div><div class='output co'>#&gt; 
 #&gt; t test of coefficients:
 #&gt; 
 #&gt;              Estimate Std. Error t value Pr(&gt;|t|)  
@@ -294,10 +286,15 @@
 
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
@@ -308,7 +305,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
 
       </footer>
