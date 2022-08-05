@@ -139,7 +139,11 @@ getQ <- function(Q1, Q2, ng, nclusters)
             j.end = t + ng.vec[t+1]
             for (j in j.ini:j.end)
             {
+                tryCatch(
                 q1_2 = q1_2 + Q1[j, i]^2
+                   ,
+                error = function(e) {stop("\n\nError when getting matrix Q. Make sure you estimated the model with a data.frame ordered by the clustering variables. See documentation.\n\n")},
+                )
                 q1q2 = q1q2 + Q1[j, i]*Q2[j, i]
                 q2_2 = q2_2 + Q2[j, i]^2
             }
@@ -283,7 +287,11 @@ vcovCESE <- function(mod, cluster = NULL, type=NULL)
     Q1 = I - Pg
     Q2 = ddp - Q1 - Pg %*% ddp - ddp %*% Pg + Zg
     
-    q    = getQ(Q1, Q2, ng, nclusters)
+    tryCatch(
+        q    = getQ(Q1, Q2, ng, nclusters)
+       ,
+	error = function(e) {stop("\n\nError when getting matrix Q. Make sure you estimated the model with a data.frame ordered by the clustering variables. See documentation.\n\n")},
+    )
     q1_2 = q$q1_2
     q1q2 = q$q1q2
     q2_2 = q$q2_2
@@ -299,7 +307,11 @@ vcovCESE <- function(mod, cluster = NULL, type=NULL)
     eep = e %*% t(e)
     
     ## matrices for accumulating Q'e
-    Qe = get.Qe(Q1, Q2, eep, ng, nclusters)
+    tryCatch(
+        Qe = get.Qe(Q1, Q2, eep, ng, nclusters)
+       ,
+	error = function(e) {stop("\n\nError when getting matrix Qe. Make sure you estimated the model with a data.frame ordered by the clustering variables. See documentation.\n\n")},
+    )
 
     ## compute estimates for sigma and rho (Sigma.hat)
     sighat = zi %*% Qe 
