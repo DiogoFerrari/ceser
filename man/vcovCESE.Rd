@@ -7,7 +7,7 @@
 vcovCESE(mod, cluster = NULL, type = NULL)
 }
 \arguments{
-\item{mod}{a model object. It can be the output of the functions \code{lm}, \code{glm}, or other regression function that returns compatible objects.}
+\item{mod}{a model object. It can be the output of the functions \code{lm}, \code{glm}, or other regression function that returns compatible objects. Important:}
 
 \item{cluster}{either a string vector with the name of the variables that will be used to cluster the standard errors, or a formula - e.g., ~ rhs, with a summation of the variables that will be used to cluster the standard errors replacing the \code{rhs} -, or a vector, matrix, or data.frame with the clustering data.}
 

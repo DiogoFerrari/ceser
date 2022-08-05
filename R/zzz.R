@@ -13,7 +13,7 @@
  ## ------------------------------------------
  ## Cluster Estimated Standard Errors  (ceser)
  ## ------------------------------------------
- Author(s): Diogo Ferrari and John Jackson
+ Author(s): Diogo Ferrari
  ')
 } 
 

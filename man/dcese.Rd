@@ -4,7 +4,8 @@
 \name{dcese}
 \alias{dcese}
 \title{Sample data set}
-\format{A data frame with rows and 9 variables:
+\format{
+A data frame with rows and 9 variables:
 \describe{
   \item{country}{name of the country}
   \item{enep}{Effective number of legislative parties}
@@ -16,7 +17,8 @@
   \item{enpcfapres}{Interaction between enpc and fapres}
   \item{logmag_eneg}{Interaction between logmag and eneg}
   ...
-}}
+}
+}
 \source{
 Jackson, John (2019) Corrected Standard Errors with Clustered
 Data. Political Analysis.

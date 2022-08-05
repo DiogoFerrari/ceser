@@ -1,4 +1,5 @@
 
+
 ## {{{ ancilary functions }}}
 
 check.type <- function(type)
@@ -121,7 +122,7 @@ get.sumZg <- function(Zg, n)
 }
 getQ <- function(Q1, Q2, ng, nclusters)
 {
-    ## Computing q1Tq1, etc.
+    ## Computing q1Tq1, q2Tq2, and q1Tq2 for each cluster
     q1_2 = 0
     q1q2 = 0
     q2_2 = 0
@@ -135,7 +136,7 @@ getQ <- function(Q1, Q2, ng, nclusters)
         for (i in i.ini:i.end)
         {
             j.ini = i
-            j.end =  t + ng.vec[t+1]
+            j.end = t + ng.vec[t+1]
             for (j in j.ini:j.end)
             {
                 q1_2 = q1_2 + Q1[j, i]^2
@@ -180,11 +181,16 @@ get.Qe <- function(Q1, Q2, eep, ng, nclusters)
 #' Cluster Estimated Standard Errors (CESE)
 #'
 #'
-#' @param mod a model object. It can be the output of the functions \code{lm}, \code{glm}, or other regression function that returns compatible objects.
+#' @param mod a model object. It can be the output of the functions \code{lm}, \code{glm}, or other regression function that returns compatible objects. Important: See details
 #' @param cluster either a string vector with the name of the variables that will be used to cluster the standard errors, or a formula - e.g., ~ rhs, with a summation of the variables that will be used to cluster the standard errors replacing the \code{rhs} -, or a vector, matrix, or data.frame with the clustering data.
 #' @param type string with either \code{HC0}, \code{HC1}, \code{HC2}, \code{HC3}, or \code{HC4}. It specifies the type of heteroskedasticity correction to use  (see Davidson and MacKinnon (1993) and Hayes and Cai (2007)).
 #'
 #' @return The function returns a variance-covariace matrix of the coefficient estimates using the Cluster Estimated Standard Error (CESE) method.
+#'
+#' @details
+#' The data frame must be ordered by the clustering variables before 
+#' estimating the model with \code{lm}, etc.
+#' 
 #' @references
 #' Jackson, John (2019) Corrected Standard Errors with Clustered Data. Political Analysis.
 #' 
@@ -313,3 +319,4 @@ vcovCESE <- function(mod, cluster = NULL, type=NULL)
 
     return(sb)
 }
+
