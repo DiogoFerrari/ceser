@@ -31,15 +31,15 @@ mod  = lm(enep ~  enpc + fapres + enpcfapres + proximity + eneg + logmag + logma
 ## Getting the variance covariance matrix
 ## -------------------------------------- 
 ## Original variance-covariance matrix (no clustered std. errors)
-vcov(mod)
+## vcov(mod)
 
 ## Variance-covariance matrix using CRSE (sandwish package)
 ## sandwich::vcovCL(mod, cluster = ~ country)
 ## sandwich::vcovCL(mod, cluster = ~ country, type="HC3")
 
 ## Variance-covariance matrix using CESE
-ceser::vcovCESE(mod, cluster = ~ country)
-ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
+## ceser::vcovCESE(mod, cluster = ~ country)
+## ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
 
 ## ---------
 ## Summaries
@@ -51,7 +51,7 @@ summary(mod)
 ## lmtest::coeftest(mod, vcov = sandwich::vcovCL, cluster = ~ country)                   
 
 ## summary using CESE
-lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
+## lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
 
 
 }

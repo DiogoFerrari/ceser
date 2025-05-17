@@ -1,5 +1,5 @@
 ## Test environments
-* local Ubuntu 18.04, R 3.4.4
+* local Ubuntu 24.04.2 LTS, R 4.3.3 (2024-02-29)
 * ubuntu 14.04 (on travis-ci), R 3.4.4
 * win-builder (devel and release)
 

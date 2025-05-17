@@ -46,7 +46,7 @@ check.clusters <- function(mod, cluster)
     if (! (class(cluster) %in% c("formula", "character") | is.null(cluster)) ) {
         stop("\n\nThe values of the parameter 'cluster' of the function vcovCESE() must be either a string vector with the names of the variables to cluster, a formula in which the RHS contains the variables to clusters, or 'NULL'. See documentation of vcovCESE().")
     }
-    if (class(cluster) == 'character') {cluster = paste0(" ~ ", paste0(cluster, collapse = " + ") )  %>% stats::as.formula(.)}
+    if (inherits(cluster, what='character')) {cluster = paste0(" ~ ", paste0(cluster, collapse = " + ") )  %>% stats::as.formula(.)}
     if (!is.null(cluster)) {
         tryCatch(
         {
@@ -210,15 +210,15 @@ get.Qe <- function(Q1, Q2, eep, ng, nclusters)
 #' ## Getting the variance covariance matrix
 #' ## -------------------------------------- 
 #' ## Original variance-covariance matrix (no clustered std. errors)
-#' vcov(mod)
+#' ## vcov(mod)
 #' 
 #' ## Variance-covariance matrix using CRSE (sandwish package)
 #' ## sandwich::vcovCL(mod, cluster = ~ country)
 #' ## sandwich::vcovCL(mod, cluster = ~ country, type="HC3")
 #' 
 #' ## Variance-covariance matrix using CESE
-#' ceser::vcovCESE(mod, cluster = ~ country)
-#' ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
+#' ## ceser::vcovCESE(mod, cluster = ~ country)
+#' ## ceser::vcovCESE(mod, cluster = ~ country, type="HC3") # HC3 correction
 #'
 #' ## ---------
 #' ## Summaries
@@ -230,7 +230,7 @@ get.Qe <- function(Q1, Q2, eep, ng, nclusters)
 #' ## lmtest::coeftest(mod, vcov = sandwich::vcovCL, cluster = ~ country)                   
 #'
 #' ## summary using CESE
-#' lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
+#' ## lmtest::coeftest(mod, vcov = ceser::vcovCESE, cluster = ~ country, type='HC3')
 #' 
 #' 
 #' @export
@@ -307,11 +307,11 @@ vcovCESE <- function(mod, cluster = NULL, type=NULL)
     eep = e %*% t(e)
     
     ## matrices for accumulating Q'e
-    tryCatch(
-        Qe = get.Qe(Q1, Q2, eep, ng, nclusters)
+    Qe =tryCatch(
+        get.Qe(Q1, Q2, eep, ng, nclusters)
        ,
-	error = function(e) {stop("\n\nError when getting matrix Qe. Make sure you estimated the model with a data.frame ordered by the clustering variables. See documentation.\n\n")},
-    )
+        error = function(e) {stop("\n\nError when getting matrix Qe. Make sure you estimated the model with a data.frame ordered by the clustering variables. See documentation.\n\n")},
+        )
 
     ## compute estimates for sigma and rho (Sigma.hat)
     sighat = zi %*% Qe 

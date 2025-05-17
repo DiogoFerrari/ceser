@@ -1,21 +1,21 @@
 Package: ceser
 Title: Cluster Estimated Standard Errors
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Diogo", "Ferrari", email="diogoferrari@gmail.com", role=c("aut", "cre")))
 Description: Implementation of the Cluster Estimated Standard Errors (CESE) proposed in Jackson (2020) <DOI:10.1017/pan.2019.38> to compute clustered standard errors of linear coefficients in regression models with grouped data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/DiogoFerrari/ceser, http://www.diogoferrari.com/ceser/
+NeedsCompilation: No
 BugReports: https://github.com/DiogoFerrari/ceser/issues
 Depends: R (>= 2.10)
 Imports: 
     magrittr,
     purrr,
     dplyr,
-    tibble,
-    lmtest
-RoxygenNote: 7.1.2
+    tibble
+RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown

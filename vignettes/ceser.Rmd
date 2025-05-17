@@ -134,31 +134,6 @@ To ilustrate how to use the **ceser** package, we use the data set `dcese`, whic
 The outcome variable is the number of effective legislative parties (*enep*).  The explanatory variables are: the number of presidential candidates (*enpc*); a measure of presidential power (*fapres*); the proximity of presidential and legislative elections (*proximity*); the effective number of ethnic groups (*eneg*); the log of average district magnitudes (*logmag*); an interaction term between the number of presidential candidates and the presidential power (*enpcfapres* = *enpc* \(\times\) *fapres*), and another interaction term between the log of the district magnitude and the number of ethnic groups (*logmag\_eneg* = *logmag* \(\times\) *eneg*). In the example below, we regress *enpc* on *fapres*, *enpc*, their interaction, and other controls. 
 
 
-```{r setup}
-library(ceser)
-data(dcese)
-```
-
-Let's estimate a linear model using the `lm()` function.
-
-
-```{r}
-mod  = lm(enep ~  enpc + fapres + enpcfapres + proximity
-                       + eneg + logmag + logmag_eneg , data=dcese)
-```
-
-For all the examples below, we use the HC3 correction. To compute the variance covariance matrix of the estimated coefficients \(\hat{\beta}\) using clustered standard errors by country, just execute:
-
-```{r}
-vcovCESE(mod, cluster = ~country, type="HC3")
-```
-
-We can obtain the summary table with CESE by country by running:
-
-```{r}
-library(lmtest)
-coeftest(mod, vcov = vcovCESE, cluster = ~ country, type="HC3")
-```
 
 
 ## References
